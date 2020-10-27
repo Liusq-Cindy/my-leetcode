@@ -40,5 +40,29 @@ var nthUglyNumber = function(n, a, b, c) {
 
 console.log('nthUglyNumber', nthUglyNumber(5,3,6,5))
 // console.log('nthUglyNumber', nthUglyNumber(1000000000,2,217983653,336916467))
-
 // http://box.hp.guahao-inc.com/typescript/137
+
+// 更优解：根据倍数规律更新，不遍历所有数值
+var nthUglyNumber1 = function(n, a, b, c) {
+   let minA = a,minB = b, minC = c;tips=0;
+   let minNow = 0;mew=[];
+   while(tips < n) {
+      minNow = Math.min(minA,minB,minC);
+      // if (minNow === minA) {
+      //    minA = minA + a
+      // } else if (minNow === minB) {
+      //    minB = minB + b
+      // } else if (minNow === minC){
+      //    minC = minC + c
+      // }   以上方式会出现重复数字，有问题
+      if (minA === minNow) minA += a;
+      if (minB === minNow) minB += b;
+      if (minC === minNow) minC += c;
+      tips++;
+      mew.push(minNow)
+   }
+   console.log('mew', mew)
+   return minNow;
+  };
+  console.log('nthUglyNumber1', nthUglyNumber1(5,3,6,5))
+// console.log('nthUglyNumber1', nthUglyNumber1(1000000000,2,217983653,336916467))
