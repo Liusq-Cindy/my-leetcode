@@ -11,6 +11,17 @@
 
 示例 1：
 
+a:3
+b:1
+c:5
+
+a:1
+b:0
+c:3
+
+b[a] >0
+b[a]--
+
 输入：words = ["cat","bt","hat","tree"], chars = "atach"
 输出：6
 解释： 
@@ -29,6 +40,7 @@
  * @param {string} chars
  * @return {number}
  */
+// 方法一： 两次循环，对每个单词去字符串中寻找，找到了就去掉改字符串
 var countCharacters = function(words, chars) {
   let wordsArray = [];
   for (let i = 0; i< words.length; i++) {
@@ -49,5 +61,26 @@ var countCharacters = function(words, chars) {
   }
   return wordsArray.join('').length;
 };
-console.log('6', countCharacters(["cat","bt","hat","tree"], "atach"))
-console.log('10', countCharacters(["hello","world","leetcode"], "welldonehoneyr"))
+// console.log('6', countCharacters(["cat","bt","hat","tree"], "atach"))
+// console.log('10', countCharacters(["hello","world","leetcode"], "welldonehoneyr"))
+
+// 方法二，字符串排序，然后正则识别是否包含对应单词,如识别aaabbbccc中是否包含ac
+var countCharacters1 = function(words, chars) {
+ let wordsLong = 0;
+ for (let i = 0; i< words.length; i++) {
+  let newChars = chars.split('').sort().join('');
+  // 正则匹配是否包含单词所需字母，newChars.indexOf(words[i]
+  let realW = ''
+  words[i].split('').sort().map((item) => {
+   realW += item + '+\\w*'
+  })
+  let reg = new RegExp(realW)
+
+  if (reg.test(newChars)) {
+   wordsLong += words[i].length
+  }
+ }
+ return wordsLong;
+};
+console.log('6', countCharacters1(["cat","bt","hat","tree"], "atacchh"))
+console.log('10', countCharacters1(["hello","world","leetcode"], "welldonehoneyr"))
