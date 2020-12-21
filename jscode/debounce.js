@@ -15,7 +15,7 @@ function debounce(func, delay) {
   }
 }
  
-// 2、立即执行版：一开始就触发，后面再出发不执行，delay秒后可以再出发
+// 2、立即执行版：一开始就触发，后面再触发不执行，delay秒后可以再触发
 function debounce (func, delay) {
   let timer;
   return function(){
@@ -43,7 +43,7 @@ function debounce (func, delay) {
     return function() {
       let context = this,
           args = arguments;
-           
+      // 根据immediate参数配置是否立即执行
       if (timer) clearTimeout(timer);
       if (immediate) {
         let callNow = !timer;
