@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>用css实现自定义dashed边框间距</title>
+  </head>
+  <body>
+    <h1>用css实现自定义dashed边框</h1>
+    <h3>
+      自定义border-dashed实现原理：利用linear-gradient属性，自定义背景图片，定义其宽窄及重复，如：
+    </h3>
+    <h4>重点1：background-repeat: repeat-x; 背景x肘重复</h4>
+    <h4>
+      重点2：background-image: linear-gradient属性:(方向，颜色 0% ，渐变色 40%，
+      透明色 40%)
+    </h4>
+    <div class="content">
+      <div class="dash"></div>
+    </div>
+  </body>
+</html>
+<style>
+  .content {
+    background-color: pink;
+    height: 30px;
+  }
+  .dash {
+    width: 100%;
+    height: 1px;
+    background-image: linear-gradient(
+      to right,
+      blue 0%,
+      blue 50%,
+      transparent 50%
+    );
+    background-size: 8px 1px;
+    background-repeat: repeat-x;
+  }
+</style>
