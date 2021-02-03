@@ -33,20 +33,31 @@ http://box.hp.guahao-inc.com/typescript/198
  */
 var wordBreak = function(s, wordDict) {
   let answer = false;
+  const allZero = function(n) {
+    let zero = true;
+    n.split('').map(item => {
+      if(+item !== 0) {
+        zero =false;
+      }
+    })
+    return zero;
+  }
   const sliceS = function (n) {
-    if (wordDict.indexOf(n) !== -1) {
+    // var reg = /^0+$/;
+    console.log('n',n)
+    if (wordDict.indexOf(n) !== -1 || allZero(n)) {
      answer = true;
      return;
     } else {
      // 拆分这个sliceS
      for (let i=0;i<wordDict.length;i++) {
       const indexN = n.indexOf(wordDict[i]);
+      // console.log('22', wordDict[i], indexN);
       if (indexN !== -1) {
-       const remain = n.slice(0, indexN)+n.slice(indexN+wordDict[i].length, n.length)
-       // console.log('裁减后', remain);
+      // console.log('1');
+       const remain = n.slice(0, indexN)+"0" +n.slice(indexN+wordDict[i].length, n.length)
+      //  console.log('裁减后', remain);
        sliceS(remain);
-      } else {
-       return;
       }
      }
     }
@@ -55,6 +66,8 @@ var wordBreak = function(s, wordDict) {
   return answer;
 };
 
-console.log('true', wordBreak('leetcode', ["leet", "code"]))
-console.log('true', wordBreak('applepenapple', ["apple", "pen"]))
-console.log('true', wordBreak('catsandog', ["cats", "dog", "sand", "and", "cat"]))
+// console.log('true', wordBreak('leetcode', ["leet", "code"]))
+// console.log('true', wordBreak('applepenapple', ["apple", "pen"]))
+// console.log('true', wordBreak('catsandog', ["cats", "dog", "sand", "and", "cat"]))
+// console.log('true', wordBreak('bb', ["a","b","bbb"]))
+console.log('false', wordBreak('ccbb', ["cb","bc","bbb"]))

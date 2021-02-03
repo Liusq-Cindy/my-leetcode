@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>用css实现画一个三角图形</title>
+  </head>
+  <body>
+    <h1>用css实现画一个三角图形</h1>
+    <h3>
+      三角形实现原理：宽度width为0；height为0；设置边框，则图形会由边框撑开，如：
+    </h3>
+    <div class="triangle-example"></div>
+    <h3>
+      通过改变几个边框的宽度及颜色，即可实现三角形的绘制，重要属性：
+      透明色transparant
+    </h3>
+    <div class="content">
+      <div class="triangle"></div>
+    </div>
+  </body>
+</html>
+<style>
+  .triangle-example {
+    width: 0px;
+    height: 0px;
+    /* background-color: blue; */
+    border-bottom: 30px solid blue;
+    border-top: 30px solid yellowgreen;
+    border-left: 30px solid yellow;
+    border-right: 30px solid red;
+  }
+  .triangle {
+    width: 0px;
+    height: 0px;
+    /* background-color: blue; */
+    border-bottom: 30px solid blue;
+    border-top: 30px solid transparent;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+  }
+</style>
